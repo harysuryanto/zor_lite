@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCLNbfJhlaPpxbp_HwhlYBfIJGQwQpbevg',
-    appId: '1:754647384521:android:4f2ee233b9b0585dff6818',
+    appId: '1:754647384521:android:6aee3e6c066f3a1dff6818',
     messagingSenderId: '754647384521',
     projectId: 'zor-app-978a5',
     storageBucket: 'zor-app-978a5.appspot.com',
