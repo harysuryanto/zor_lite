@@ -5,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import 'firebase_options.dart';
-import 'screens/add_exercise_screen.dart';
 import 'screens/add_plan_screen.dart';
 import 'screens/detail_plan_screen.dart';
 import 'screens/home_screen.dart';
@@ -61,15 +60,6 @@ class MyApp extends StatelessWidget {
           final String planName = state.queryParams['planName']!;
 
           return DetailPlanScreen(planId: planId, planName: planName);
-        },
-      ),
-      GoRoute(
-        path: '/add-exercise',
-        builder: (context, state) {
-          final String planId = state.queryParams['planId']!;
-          final String planName = state.queryParams['planName']!;
-
-          return AddExerciseScreen(planId: planId, planName: planName);
         },
       ),
       GoRoute(
