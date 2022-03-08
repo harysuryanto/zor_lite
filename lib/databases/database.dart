@@ -1,13 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../models/exercise.dart';
 import '../models/my_profile.dart';
 import '../models/plan.dart';
 
 class DatabaseService {
   final FirebaseFirestore _db = FirebaseFirestore.instance;
 
-  /// Unused method
+  /// User
   Future<MyProfile> getMyProfile(String id) async {
     var snap = await _db.collection('users').doc(id).get().catchError(
         (error) => print("Failed to get current profile document: $error"));
@@ -15,7 +16,6 @@ class DatabaseService {
     return MyProfile.fromMap(snap.data as Map<String, dynamic>);
   }
 
-  /// Get a stream of a single document
   Stream<MyProfile> streamMyProfile(String uid) {
     var ref = _db.collection('users').doc(uid);
 
@@ -25,7 +25,7 @@ class DatabaseService {
     });
   }
 
-  /// Query a subcollection
+  /// Plan
   Stream<List<Plan>> streamPlans(User user) {
     var ref = _db.collection('users').doc(user.uid).collection('plans');
 
@@ -36,24 +36,65 @@ class DatabaseService {
     });
   }
 
-  Future<void> addPlan(User user, dynamic plan) {
+  Future<void> addPlan(User user, dynamic data) {
     return _db
         .collection('users')
         .doc(user.uid)
         .collection('plans')
-        .add(plan)
+        .add(data)
         .then((value) => print("Plan added"))
         .catchError((error) => print("Failed to add plan: $error"));
   }
 
-  Future<void> removePlan(User user, String id) {
+  Future<void> removePlan(User user, String planId) {
     return _db
         .collection('users')
         .doc(user.uid)
         .collection('plans')
-        .doc(id)
+        .doc(planId)
         .delete()
         .then((value) => print("Plan deleted"))
         .catchError((error) => print("Failed to delete plan: $error"));
+  }
+
+  /// Exercise
+  Stream<List<Exercise>> streamExercises(User user, String planId) {
+    var ref = _db
+        .collection('users')
+        .doc(user.uid)
+        .collection('plans')
+        .doc(planId)
+        .collection('exercises');
+
+    return ref.snapshots().map((list) {
+      return list.docs.map((doc) {
+        return Exercise.fromFirestore(doc);
+      }).toList();
+    });
+  }
+
+  Future<void> addExercise(User user, String planId, dynamic data) {
+    return _db
+        .collection('users')
+        .doc(user.uid)
+        .collection('plans')
+        .doc(planId)
+        .collection('exercise')
+        .add(data)
+        .then((value) => print("Exercise added"))
+        .catchError((error) => print("Failed to add exercise: $error"));
+  }
+
+  Future<void> removeExercise(User user, String planId, String exerciseId) {
+    return _db
+        .collection('users')
+        .doc(user.uid)
+        .collection('plans')
+        .doc(planId)
+        .collection('exercises')
+        .doc(exerciseId)
+        .delete()
+        .then((value) => print("Exercise deleted"))
+        .catchError((error) => print("Failed to delete exercise: $error"));
   }
 }
