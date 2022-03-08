@@ -20,7 +20,7 @@ class DetailPlanScreen extends StatelessWidget {
 
     return CupertinoPageScaffold(
       navigationBar: const CupertinoNavigationBar(
-        middle: Text('Zor Lite'),
+        middle: Text('Exercise List'),
       ),
       child: SafeArea(
         child: ListView(
