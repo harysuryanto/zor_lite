@@ -24,6 +24,7 @@ class PlanList extends StatelessWidget {
         ? const Text('No plans.')
         : ListView(
             shrinkWrap: shrinkWrap,
+            physics: shrinkWrap ? const NeverScrollableScrollPhysics() : null,
             children: plans.map((plan) {
               return CustomListTile(
                 title: plan.name,
