@@ -79,7 +79,7 @@ class DatabaseService {
         .doc(user.uid)
         .collection('plans')
         .doc(planId)
-        .collection('exercise')
+        .collection('exercises')
         .add(data)
         .then((value) => print("Exercise added"))
         .catchError((error) => print("Failed to add exercise: $error"));
