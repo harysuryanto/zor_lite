@@ -1,4 +1,4 @@
-package com.example.zor_crud_only
+package id.harysuryanto.zor_lite
 
 import io.flutter.embedding.android.FlutterActivity
 

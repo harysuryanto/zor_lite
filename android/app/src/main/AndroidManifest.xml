@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.zor_crud_only">
+    package="id.harysuryanto.zor_lite">
    <application
         android:label="zor_crud_only"
         android:name="${applicationName}"
