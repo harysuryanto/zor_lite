@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           child: const Text('Add plan'),
           onPressed: () {
-            context.push('/add_plan_screen');
+            context.push('/add-plan');
           },
         ),
       ),
