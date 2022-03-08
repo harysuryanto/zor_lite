@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
         theme: CupertinoThemeData(
           brightness: Brightness.light,
           primaryColor: CupertinoColors.systemOrange,
-          barBackgroundColor: CupertinoColors.systemGrey.withOpacity(0.5),
+          barBackgroundColor: CupertinoColors.systemGrey.withOpacity(0.2),
         ),
         routeInformationParser: _router.routeInformationParser,
         routerDelegate: _router.routerDelegate,
@@ -57,8 +57,9 @@ class MyApp extends StatelessWidget {
         path: '/detail-plan',
         builder: (context, state) {
           final String planId = state.queryParams['planId']!;
+          final String planName = state.queryParams['planName']!;
 
-          return DetailPlanScreen(planId: planId);
+          return DetailPlanScreen(planId: planId, planName: planName);
         },
       ),
       GoRoute(
