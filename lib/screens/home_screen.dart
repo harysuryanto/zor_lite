@@ -29,8 +29,14 @@ class HomeScreen extends StatelessWidget {
     }
 
     return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        middle: Text('Zor Lite'),
+      navigationBar: CupertinoNavigationBar(
+        middle: const Text('Zor Lite'),
+        trailing: CupertinoButton(
+          child: const Text('Add plan'),
+          onPressed: () {
+            context.push('/add_plan_screen');
+          },
+        ),
       ),
       child: SafeArea(
         child: ListView(
@@ -50,11 +56,12 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 20),
-            CupertinoButton(
-              child: const Text('Add plan'),
-              onPressed: () {
-                context.push('/add_plan_screen');
-              },
+            const Text(
+              'Plans',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 20),
             StreamProvider<List<Plan>>.value(
