@@ -27,13 +27,21 @@ class PlanList extends StatelessWidget {
             children: plans.map((plan) {
               return CustomListTile(
                 title: plan.name,
+                subtitle: plan.schedules.isNotEmpty
+                    ? plan.schedules
+                        .map((value) =>
+                            value[0].toUpperCase() +
+                            value.substring(1).toLowerCase())
+                        .join(', ')
+                    : null,
                 leading: Padding(
                   padding: const EdgeInsets.all(8),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(4),
                     child: Container(
                       alignment: Alignment.center,
-                      padding: const EdgeInsets.all(16),
+                      width: 46,
+                      height: 46,
                       child: Text(
                         plan.name.substring(0, 1),
                         style: const TextStyle(color: CupertinoColors.white),
@@ -57,6 +65,7 @@ class PlanList extends StatelessWidget {
                           child: const Text('Delete'),
                           isDestructiveAction: true,
                           onPressed: () {
+                            Navigator.pop(context);
                             DatabaseService().removePlan(user!, plan.id);
                           },
                         ),
