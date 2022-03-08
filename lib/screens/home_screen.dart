@@ -33,6 +33,7 @@ class HomeScreen extends StatelessWidget {
       navigationBar: CupertinoNavigationBar(
         middle: const Text('Zor Lite'),
         trailing: CupertinoButton(
+          padding: EdgeInsets.zero,
           child: const Text('Add plan'),
           onPressed: () {
             context.push('/add_plan_screen');

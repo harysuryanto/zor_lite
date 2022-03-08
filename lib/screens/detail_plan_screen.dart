@@ -24,6 +24,7 @@ class DetailPlanScreen extends StatelessWidget {
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(
         middle: Text(planName),
+        previousPageTitle: 'Home',
       ),
       child: ScaffoldBodyWithSafeArea(
         children: [

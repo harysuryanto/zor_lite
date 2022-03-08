@@ -17,6 +17,7 @@ class ScaffoldBodyWithSafeArea extends StatelessWidget {
       children: [
         SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: children,
           ),
         ),

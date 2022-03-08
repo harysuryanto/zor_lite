@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../databases/database.dart';
+import '../widgets/global/ScaffoldBodyWithSafeArea/scaffold_body_with_safe_area.dart';
 
 class AddPlanScreen extends StatefulWidget {
   const AddPlanScreen({Key? key}) : super(key: key);
@@ -14,6 +15,10 @@ class AddPlanScreen extends StatefulWidget {
 }
 
 class _AddPlanScreenState extends State<AddPlanScreen> {
+  final planName = TextEditingController();
+
+  List schedules = [];
+
   bool isScheduledSunday = false;
   bool isScheduledMonday = false;
   bool isScheduledTuesday = false;
@@ -21,10 +26,6 @@ class _AddPlanScreenState extends State<AddPlanScreen> {
   bool isScheduledThursday = false;
   bool isScheduledFriday = false;
   bool isScheduledSaturday = false;
-
-  List schedules = [];
-
-  final planName = TextEditingController();
 
   void updateSchedules() {
     isScheduledSunday
@@ -79,6 +80,7 @@ class _AddPlanScreenState extends State<AddPlanScreen> {
       navigationBar: CupertinoNavigationBar(
         middle: const Text('Add New Plan'),
         trailing: CupertinoButton(
+          padding: EdgeInsets.zero,
           child: const Text('Save'),
           onPressed: () {
             updateSchedules();
@@ -93,134 +95,132 @@ class _AddPlanScreenState extends State<AddPlanScreen> {
             context.pop();
           },
         ),
+        previousPageTitle: 'Home',
       ),
-      child: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(8),
-          children: [
-            /// Plan name
-            const Text('Name'),
+      child: ScaffoldBodyWithSafeArea(
+        children: [
+          /// Plan name
+          const Text('Name'),
 
-            const SizedBox(height: 8),
+          const SizedBox(height: 8),
 
-            CupertinoTextField(
-              controller: planName,
-              keyboardType: TextInputType.text,
-              placeholder: 'E.g., Upper body workout',
-            ),
+          CupertinoTextField(
+            controller: planName,
+            keyboardType: TextInputType.text,
+            placeholder: 'E.g., Upper body workout',
+          ),
 
-            const SizedBox(height: 24),
+          const SizedBox(height: 24),
 
-            /// Schedule
-            const Text('Schedules'),
+          /// Schedule
+          const Text('Schedules'),
 
-            const SizedBox(height: 8),
+          const SizedBox(height: 8),
 
-            Row(
-              children: [
-                Material(
-                  child: Checkbox(
-                    value: isScheduledSunday,
-                    onChanged: (value) {
-                      setState(() => isScheduledSunday = value!);
-                      updateSchedules();
-                    },
-                  ),
+          Row(
+            children: [
+              Material(
+                child: Checkbox(
+                  value: isScheduledSunday,
+                  onChanged: (value) {
+                    setState(() => isScheduledSunday = value!);
+                    updateSchedules();
+                  },
                 ),
-                const Text('Sunday'),
-              ],
-            ),
-            Row(
-              children: [
-                Material(
-                  child: Checkbox(
-                    value: isScheduledMonday,
-                    onChanged: (value) {
-                      setState(() => isScheduledMonday = value!);
-                      updateSchedules();
-                    },
-                  ),
+              ),
+              const Text('Sunday'),
+            ],
+          ),
+          Row(
+            children: [
+              Material(
+                child: Checkbox(
+                  value: isScheduledMonday,
+                  onChanged: (value) {
+                    setState(() => isScheduledMonday = value!);
+                    updateSchedules();
+                  },
                 ),
-                const Text('Monday'),
-              ],
-            ),
+              ),
+              const Text('Monday'),
+            ],
+          ),
 
-            Row(
-              children: [
-                Material(
-                  child: Checkbox(
-                    value: isScheduledTuesday,
-                    onChanged: (value) {
-                      setState(() => isScheduledTuesday = value!);
-                      updateSchedules();
-                    },
-                  ),
+          Row(
+            children: [
+              Material(
+                child: Checkbox(
+                  value: isScheduledTuesday,
+                  onChanged: (value) {
+                    setState(() => isScheduledTuesday = value!);
+                    updateSchedules();
+                  },
                 ),
-                const Text('Tuesday'),
-              ],
-            ),
+              ),
+              const Text('Tuesday'),
+            ],
+          ),
 
-            Row(
-              children: [
-                Material(
-                  child: Checkbox(
-                    value: isScheduledWednesday,
-                    onChanged: (value) {
-                      setState(() => isScheduledWednesday = value!);
-                      updateSchedules();
-                    },
-                  ),
+          Row(
+            children: [
+              Material(
+                child: Checkbox(
+                  value: isScheduledWednesday,
+                  onChanged: (value) {
+                    setState(() => isScheduledWednesday = value!);
+                    updateSchedules();
+                  },
                 ),
-                const Text('Wednesday'),
-              ],
-            ),
+              ),
+              const Text('Wednesday'),
+            ],
+          ),
 
-            Row(
-              children: [
-                Material(
-                  child: Checkbox(
-                    value: isScheduledThursday,
-                    onChanged: (value) {
-                      setState(() => isScheduledThursday = value!);
-                      updateSchedules();
-                    },
-                  ),
+          Row(
+            children: [
+              Material(
+                child: Checkbox(
+                  value: isScheduledThursday,
+                  onChanged: (value) {
+                    setState(() => isScheduledThursday = value!);
+                    updateSchedules();
+                  },
                 ),
-                const Text('Thursday'),
-              ],
-            ),
+              ),
+              const Text('Thursday'),
+            ],
+          ),
 
-            Row(
-              children: [
-                Material(
-                  child: Checkbox(
-                    value: isScheduledFriday,
-                    onChanged: (value) {
-                      setState(() => isScheduledFriday = value!);
-                      updateSchedules();
-                    },
-                  ),
+          Row(
+            children: [
+              Material(
+                child: Checkbox(
+                  value: isScheduledFriday,
+                  onChanged: (value) {
+                    setState(() => isScheduledFriday = value!);
+                    updateSchedules();
+                  },
                 ),
-                const Text('Friday'),
-              ],
-            ),
+              ),
+              const Text('Friday'),
+            ],
+          ),
 
-            Row(
-              children: [
-                Material(
-                  child: Checkbox(
-                    value: isScheduledSaturday,
-                    onChanged: (value) {
-                      setState(() => isScheduledSaturday = value!);
-                      updateSchedules();
-                    },
-                  ),
+          Row(
+            children: [
+              Material(
+                child: Checkbox(
+                  value: isScheduledSaturday,
+                  onChanged: (value) {
+                    setState(() => isScheduledSaturday = value!);
+                    updateSchedules();
+                  },
                 ),
-                const Text('Saturday'),
-              ],
-            ),
-          ],
-        ),
+              ),
+              const Text('Saturday'),
+            ],
+          ),
+        ],
       ),
     );
   }
