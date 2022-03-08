@@ -52,7 +52,8 @@ class PlanList extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
-                  context.push('/detail-plan?planId=${plan.id}');
+                  context.push(
+                      '/detail-plan?planId=${plan.id}&planName=${plan.name}');
                 },
                 onLongPress: () {
                   showCupertinoModalPopup(
