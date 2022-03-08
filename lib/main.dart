@@ -3,9 +3,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:zor_crud_only/screens/detail_plan_screen.dart';
 
 import 'firebase_options.dart';
+import 'screens/add_plan_screen.dart';
+import 'screens/detail_plan_screen.dart';
 import 'screens/home_screen.dart';
 
 void main() async {
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: CupertinoApp.router(
+        debugShowCheckedModeBanner: false,
         title: 'Zor Lite',
         theme: CupertinoThemeData(
           brightness: Brightness.light,
@@ -59,10 +61,10 @@ class MyApp extends StatelessWidget {
           return DetailPlanScreen(planId: planId);
         },
       ),
-      // GoRoute(
-      //   path: '/add_plan_screen',
-      //   builder: (context, state) => const AddPlanScreen(),
-      // ),
+      GoRoute(
+        path: '/add_plan_screen',
+        builder: (context, state) => const AddPlanScreen(),
+      ),
     ],
     initialLocation: '/',
     // redirect: (state) {
