@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../databases/database.dart';
 import '../models/exercise.dart';
+import '../widgets/exercise/add_exercise.dart';
 import '../widgets/exercise/exercise_list.dart';
 import '../widgets/global/ScaffoldBodyWithSafeArea/scaffold_body_with_safe_area.dart';
 
@@ -31,7 +31,12 @@ class DetailPlanScreen extends StatelessWidget {
           padding: EdgeInsets.zero,
           child: const Text('Add exercise'),
           onPressed: () {
-            context.push('/add-exercise?planId=$planId&planName=$planName');
+            showCupertinoModalPopup(
+              context: context,
+              builder: (context) {
+                return AddExercise(planId: planId);
+              },
+            );
           },
         ),
         previousPageTitle: 'Home',
