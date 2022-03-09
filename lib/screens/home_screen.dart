@@ -22,6 +22,7 @@ class HomeScreen extends StatelessWidget {
 
     if (!isLoggedIn) {
       return const CupertinoPageScaffold(
+        key: ValueKey('home screen before login'),
         navigationBar: CupertinoNavigationBar(
           middle: Text('Login'),
         ),
@@ -30,7 +31,13 @@ class HomeScreen extends StatelessWidget {
     }
 
     return CupertinoPageScaffold(
+      key: const ValueKey('home screen after login'),
       navigationBar: CupertinoNavigationBar(
+        leading: CupertinoButton(
+          padding: EdgeInsets.zero,
+          child: const Text('Sign out'),
+          onPressed: () => UserAuth().logout(),
+        ),
         middle: const Text('Zor Lite'),
         trailing: CupertinoButton(
           padding: EdgeInsets.zero,
@@ -42,18 +49,17 @@ class HomeScreen extends StatelessWidget {
       ),
       child: ScaffoldBodyWithSafeArea(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                'Welcome ${user.displayName ?? user.uid}',
-                textAlign: TextAlign.center,
-              ),
-              CupertinoButton(
-                child: const Text('Sign out'),
-                onPressed: () => UserAuth().logout(),
-              ),
-            ],
+          RichText(
+            text: TextSpan(
+              children: [
+                const TextSpan(text: 'Hi, '),
+                TextSpan(
+                  text: user.displayName ?? user.uid,
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
+                const TextSpan(text: ' 👋'),
+              ],
+            ),
           ),
           const SizedBox(height: 20),
           const Text(
