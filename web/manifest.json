@@ -1,6 +1,6 @@
 {
-    "name": "zor_lite",
-    "short_name": "zor_lite",
+    "name": "Zor Lite",
+    "short_name": "Zor Lite",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
