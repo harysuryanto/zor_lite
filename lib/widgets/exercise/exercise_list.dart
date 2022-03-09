@@ -28,6 +28,7 @@ class ExerciseList extends StatelessWidget {
             physics: shrinkWrap ? const NeverScrollableScrollPhysics() : null,
             children: exercises.map((exercise) {
               return CustomListTile(
+                key: ValueKey('exercise ${exercise.id}'),
                 title: exercise.name,
                 subtitle:
                     '${exercise.repetitions} reps,  ${exercise.sets} sets.',

@@ -27,6 +27,7 @@ class PlanList extends StatelessWidget {
             physics: shrinkWrap ? const NeverScrollableScrollPhysics() : null,
             children: plans.map((plan) {
               return CustomListTile(
+                key: ValueKey('plan ${plan.id}'),
                 title: plan.name,
                 subtitle: plan.schedules.isNotEmpty
                     ? plan.schedules
