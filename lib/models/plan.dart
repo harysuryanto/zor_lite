@@ -18,7 +18,7 @@ class Plan {
 
     return Plan(
       id: doc.id,
-      name: data['name'],
+      name: data['name'] != '' ? data['name'] : '-',
       schedules: data['schedules'] ?? [],
       exercises: data['exercises'] ?? [],
     );
