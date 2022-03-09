@@ -1,4 +1,4 @@
-# zor_crud_only
+# zor_lite
 
 A new Flutter project.
 

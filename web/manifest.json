@@ -1,6 +1,6 @@
 {
-    "name": "zor_crud_only",
-    "short_name": "zor_crud_only",
+    "name": "zor_lite",
+    "short_name": "zor_lite",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

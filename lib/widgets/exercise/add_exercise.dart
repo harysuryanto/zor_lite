@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
-import 'package:zor_crud_only/databases/database.dart';
+
+import '../../databases/database.dart';
 
 class AddExercise extends StatefulWidget {
   const AddExercise({
