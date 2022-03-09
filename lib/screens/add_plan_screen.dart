@@ -15,6 +15,7 @@ class AddPlanScreen extends StatefulWidget {
 }
 
 class _AddPlanScreenState extends State<AddPlanScreen> {
+  final formKey = GlobalKey<FormState>();
   final planName = TextEditingController();
 
   List schedules = [];
@@ -83,16 +84,18 @@ class _AddPlanScreenState extends State<AddPlanScreen> {
           padding: EdgeInsets.zero,
           child: const Text('Save'),
           onPressed: () {
-            updateSchedules();
+            if (formKey.currentState!.validate()) {
+              updateSchedules();
 
-            db.addPlan(
-              user!,
-              {
-                'name': planName.text,
-                'schedules': schedules,
-              },
-            );
-            context.pop();
+              db.addPlan(
+                user!,
+                {
+                  'name': planName.text.trim(),
+                  'schedules': schedules,
+                },
+              );
+              context.pop();
+            }
           },
         ),
         previousPageTitle: 'Home',
@@ -104,10 +107,19 @@ class _AddPlanScreenState extends State<AddPlanScreen> {
 
           const SizedBox(height: 8),
 
-          CupertinoTextField(
-            controller: planName,
-            keyboardType: TextInputType.text,
-            placeholder: 'E.g., Upper body workout',
+          Form(
+            key: formKey,
+            child: CupertinoTextFormFieldRow(
+              controller: planName,
+              keyboardType: TextInputType.name,
+              placeholder: 'E.g., Upper body workout',
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please fill this input.';
+                }
+                return null;
+              },
+            ),
           ),
 
           const SizedBox(height: 24),

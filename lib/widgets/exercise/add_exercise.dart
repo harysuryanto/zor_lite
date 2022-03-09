@@ -17,6 +17,7 @@ class AddExercise extends StatefulWidget {
 }
 
 class _AddExerciseState extends State<AddExercise> {
+  final formKey = GlobalKey<FormState>();
   final exerciseName = TextEditingController();
   final exerciseRepetitions = TextEditingController();
   final exerciseSets = TextEditingController();
@@ -55,17 +56,24 @@ class _AddExerciseState extends State<AddExercise> {
                     ),
                     const SizedBox(height: 24),
                     Form(
+                      key: formKey,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           /// Name
                           const Text('Name'),
                           const SizedBox(height: 8),
-                          CupertinoTextField(
-                            controller: exerciseName,
+                          CupertinoTextFormFieldRow(
                             placeholder: 'E.g., Push up',
                             keyboardType: TextInputType.name,
                             textInputAction: TextInputAction.next,
+                            controller: exerciseName,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please fill this input.';
+                              }
+                              return null;
+                            },
                           ),
 
                           const SizedBox(height: 16),
@@ -73,11 +81,17 @@ class _AddExerciseState extends State<AddExercise> {
                           /// Repetitions
                           const Text('Repetitions'),
                           const SizedBox(height: 8),
-                          CupertinoTextField(
+                          CupertinoTextFormFieldRow(
                             controller: exerciseRepetitions,
                             placeholder: 'E.g., 20',
                             keyboardType: TextInputType.number,
                             textInputAction: TextInputAction.next,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please fill this input.';
+                              }
+                              return null;
+                            },
                           ),
 
                           const SizedBox(height: 16),
@@ -85,11 +99,17 @@ class _AddExerciseState extends State<AddExercise> {
                           /// Sets
                           const Text('Sets'),
                           const SizedBox(height: 8),
-                          CupertinoTextField(
+                          CupertinoTextFormFieldRow(
                             controller: exerciseSets,
                             placeholder: 'E.g., 4',
                             keyboardType: TextInputType.number,
                             textInputAction: TextInputAction.done,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please fill this input.';
+                              }
+                              return null;
+                            },
                           ),
                         ],
                       ),
@@ -103,16 +123,19 @@ class _AddExerciseState extends State<AddExercise> {
               child: CupertinoButton(
                 child: const Text('Save'),
                 onPressed: () {
-                  db.addExercise(
-                    user!,
-                    widget.planId,
-                    {
-                      'name': exerciseName.text,
-                      'repetitions': int.tryParse(exerciseRepetitions.text),
-                      'sets': int.tryParse(exerciseSets.text),
-                    },
-                  );
-                  Navigator.pop(context);
+                  if (formKey.currentState!.validate()) {
+                    db.addExercise(
+                      user!,
+                      widget.planId,
+                      {
+                        'name': exerciseName.text.trim(),
+                        'repetitions':
+                            int.tryParse(exerciseRepetitions.text.trim()),
+                        'sets': int.tryParse(exerciseSets.text.trim()),
+                      },
+                    );
+                    Navigator.pop(context);
+                  }
                 },
               ),
             ),
