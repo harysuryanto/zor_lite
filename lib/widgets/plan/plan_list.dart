@@ -18,7 +18,7 @@ class PlanList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final plans = Provider.of<List<Plan>>(context);
-    final user = Provider.of<User?>(context);
+    final user = Provider.of<User?>(context, listen: false);
 
     return plans.isEmpty
         ? const Text('No plans.')

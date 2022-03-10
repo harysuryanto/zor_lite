@@ -75,7 +75,7 @@ class _AddPlanScreenState extends State<AddPlanScreen> {
   @override
   Widget build(BuildContext context) {
     final db = DatabaseService();
-    final user = Provider.of<User?>(context);
+    final user = Provider.of<User?>(context, listen: false);
 
     return CupertinoPageScaffold(
       navigationBar: CupertinoNavigationBar(

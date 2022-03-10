@@ -19,7 +19,7 @@ class ExerciseList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final exercises = Provider.of<List<Exercise>>(context);
-    final user = Provider.of<User?>(context);
+    final user = Provider.of<User?>(context, listen: false);
 
     return exercises.isEmpty
         ? const Text('No exercises.')

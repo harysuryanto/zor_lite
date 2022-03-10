@@ -33,7 +33,7 @@ class _AddExerciseState extends State<AddExercise> {
   @override
   Widget build(BuildContext context) {
     final db = DatabaseService();
-    final user = Provider.of<User?>(context);
+    final user = Provider.of<User?>(context, listen: false);
 
     return SingleChildScrollView(
       child: Padding(
