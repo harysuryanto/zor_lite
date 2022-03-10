@@ -49,17 +49,15 @@ class HomeScreen extends StatelessWidget {
       ),
       child: ScaffoldBodyWithSafeArea(
         children: [
-          RichText(
-            text: TextSpan(
-              children: [
-                const TextSpan(text: 'Hi, '),
-                TextSpan(
-                  text: user.displayName ?? user.uid,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                const TextSpan(text: ' 👋'),
-              ],
-            ),
+          Row(
+            children: [
+              const Text('Hi, '),
+              Text(
+                user.displayName ?? user.uid,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+              const Text(' 👋'),
+            ],
           ),
           const SizedBox(height: 20),
           const Text(
