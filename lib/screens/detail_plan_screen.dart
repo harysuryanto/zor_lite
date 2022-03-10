@@ -6,7 +6,7 @@ import '../databases/database.dart';
 import '../models/exercise.dart';
 import '../widgets/exercise/add_exercise.dart';
 import '../widgets/exercise/exercise_list.dart';
-import '../widgets/global/ScaffoldBodyWithSafeArea/scaffold_body_with_safe_area.dart';
+import '../widgets/global/scaffold_body_with_safe_area/scaffold_body_with_safe_area.dart';
 
 class DetailPlanScreen extends StatelessWidget {
   const DetailPlanScreen({

@@ -5,7 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../databases/database.dart';
-import '../widgets/global/ScaffoldBodyWithSafeArea/scaffold_body_with_safe_area.dart';
+import '../widgets/global/scaffold_body_with_safe_area/scaffold_body_with_safe_area.dart';
 
 class AddPlanScreen extends StatefulWidget {
   const AddPlanScreen({Key? key}) : super(key: key);
