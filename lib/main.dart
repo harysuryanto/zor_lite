@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -26,6 +27,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final platformBrightness =
+        SchedulerBinding.instance!.window.platformBrightness;
+    final isDarkMode = platformBrightness == Brightness.dark;
+
     return MultiProvider(
       providers: [
         StreamProvider<User?>.value(
@@ -37,7 +42,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Zor Lite',
         theme: CupertinoThemeData(
-          brightness: Brightness.light,
+          brightness: isDarkMode ? Brightness.dark : Brightness.light,
           primaryColor: CupertinoColors.systemOrange,
           barBackgroundColor: CupertinoColors.systemGrey.withOpacity(0.2),
         ),

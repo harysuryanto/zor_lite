@@ -149,11 +149,16 @@ class _AddExerciseState extends State<AddExercise> {
   }
 
   Container _customContainer({required Widget child}) {
+    final themeBrightness = CupertinoTheme.brightnessOf(context);
+    final backgroundColor = themeBrightness == Brightness.dark
+        ? CupertinoColors.black
+        : CupertinoColors.white;
+
     return Container(
       width: double.maxFinite,
-      decoration: const BoxDecoration(
-        color: CupertinoColors.white,
-        borderRadius: BorderRadius.all(Radius.circular(16)),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: const BorderRadius.all(Radius.circular(16)),
       ),
       child: child,
     );
