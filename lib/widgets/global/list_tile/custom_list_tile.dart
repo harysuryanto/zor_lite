@@ -20,6 +20,11 @@ class CustomListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeBrightness = CupertinoTheme.brightnessOf(context);
+    final subtitleColor = themeBrightness == Brightness.dark
+        ? CupertinoColors.white.withOpacity(0.5)
+        : CupertinoColors.black.withOpacity(0.5);
+
     return GestureDetector(
       onTap: onTap,
       onLongPress: onLongPress,
@@ -47,7 +52,7 @@ class CustomListTile extends StatelessWidget {
                         subtitle!,
                         style: TextStyle(
                           fontSize: 12,
-                          color: CupertinoColors.black.withOpacity(0.5),
+                          color: subtitleColor,
                         ),
                       ),
                     ],
