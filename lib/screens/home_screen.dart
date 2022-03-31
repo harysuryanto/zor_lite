@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
+import '../widgets/register/register.dart';
 
 import '../databases/database.dart';
 import '../models/plan.dart';
@@ -10,8 +11,15 @@ import '../widgets/global/scaffold_body_with_safe_area/scaffold_body_with_safe_a
 import '../widgets/login/login.dart';
 import '../widgets/plan/plan_list.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool isInLoginTab = true;
 
   @override
   Widget build(BuildContext context) {
@@ -21,13 +29,37 @@ class HomeScreen extends StatelessWidget {
     final db = DatabaseService();
 
     if (!isLoggedIn) {
-      return const CupertinoPageScaffold(
-        key: ValueKey('home screen before login'),
-        navigationBar: CupertinoNavigationBar(
-          middle: Text('Login'),
-        ),
-        child: Center(child: Login()),
-      );
+      if (isInLoginTab) {
+        return CupertinoPageScaffold(
+          key: const ValueKey('home screen before login'),
+          navigationBar: CupertinoNavigationBar(
+            middle: const Text('Login'),
+            trailing: CupertinoButton(
+              padding: EdgeInsets.zero,
+              child: const Text('Register'),
+              onPressed: () {
+                setState(() => isInLoginTab = false);
+              },
+            ),
+          ),
+          child: const ScaffoldBodyWithSafeArea(children: [Login()]),
+        );
+      } else {
+        return CupertinoPageScaffold(
+          key: const ValueKey('home screen before login'),
+          navigationBar: CupertinoNavigationBar(
+            middle: const Text('Register'),
+            trailing: CupertinoButton(
+              padding: EdgeInsets.zero,
+              child: const Text('Login'),
+              onPressed: () {
+                setState(() => isInLoginTab = true);
+              },
+            ),
+          ),
+          child: const ScaffoldBodyWithSafeArea(children: [Register()]),
+        );
+      }
     }
 
     return CupertinoPageScaffold(
