@@ -150,7 +150,16 @@ class _LoginState extends State<Register> {
       builder: (BuildContext context) => CupertinoAlertDialog(
         title: const Text('Alert'),
         content: Text(message),
+        actions: [
+          CupertinoDialogAction(
+            child: const Text('OK'),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
       ),
+      barrierDismissible: true,
     );
   }
 }
