@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final platformBrightness =
-        SchedulerBinding.instance!.window.platformBrightness;
+        SchedulerBinding.instance.window.platformBrightness;
     final isDarkMode = platformBrightness == Brightness.dark;
 
     return MultiProvider(
