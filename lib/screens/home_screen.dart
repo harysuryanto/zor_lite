@@ -2,14 +2,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import '../widgets/register/register.dart';
 
 import '../databases/database.dart';
 import '../models/plan.dart';
-import '../providers/user.dart';
+import '../providers/user_auth.dart';
 import '../widgets/global/scaffold_body_with_safe_area/scaffold_body_with_safe_area.dart';
 import '../widgets/login/login.dart';
 import '../widgets/plan/plan_list.dart';
+import '../widgets/register/register.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
